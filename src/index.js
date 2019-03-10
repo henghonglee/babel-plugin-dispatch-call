@@ -2,6 +2,7 @@
 module.exports = function(babel) {
   var t = babel.types;
   return {
+    name: 'dispatch-call',
     visitor: {
       CallExpression(path) {
         const node = path.node;
