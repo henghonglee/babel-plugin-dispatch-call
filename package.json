@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-dispatch-call",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Naive Redux helper to compile dispatch(fn(args)) into dispatch(call(fn, args))",
   "author": "henghonglee <henghonglee@gmail.com>",
   "main": "lib/index.js",
@@ -12,12 +12,12 @@
   "devDependencies": {
     "@babel/preset-env": "^7.3.4",
     "babel-cli": "^6.26.0",
-    "mocha": "^2.2.5"
+    "mocha": "^6.0.2"
   },
   "scripts": {
     "clean": "rm -rf lib",
     "build": "babel src -d lib",
-    "test": "mocha --compilers js:babel-register",
+    "test": "mocha --require babel-core/register",
     "test:watch": "npm run test -- --watch",
     "prepublish": "npm run clean && npm run build"
   },
