@@ -1,6 +1,11 @@
 /* eslint-disable prettier/prettier */
 /* eslint-disable no-undef */
-dispatch(actionCreator.apply(this, arguments));
+dispatch({
+  type: '__function_call_obj_apply',
+  fn: actionCreator,
+  args: arguments,
+  this: this
+});
 dispatch({
   type: '__function_call_obj',
   fn: LocationActions.checkLocationState,
