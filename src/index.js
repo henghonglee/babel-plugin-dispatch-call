@@ -26,15 +26,15 @@ module.exports = function(babel) {
           // callee can be a plain object. eg { type: GET_CURRENT_LOCATION }
           // both can have or dont have arguments
           const callee = initialArg.callee;
-          if (callee.type === 'MemberExpression') {
-            const args = initialArg.arguments;
-            initialArg.callee = t.identifier('call');
-            initialArg.arguments = [callee, ...args];
-          } else {
-            const args = initialArg.arguments;
-            initialArg.callee = t.identifier('call');
-            initialArg.arguments = [t.identifier(`${callee.name}`), ...args];
-          }
+          const args = initialArg.arguments;
+          node.arguments[0] = t.objectExpression([
+            t.objectProperty(t.identifier('type'),
+            t.stringLiteral('__function_call_obj')),
+            t.objectProperty(t.identifier('fn'), callee),
+            t.objectProperty(t.identifier('args'),
+            t.arrayExpression(args))
+          ]);
+
         }
       }
     }
